@@ -1,0 +1,30 @@
+{
+  "canisters": {
+    "contribution_weighted_voting_cdk_rs_backend": {
+      "candid": "src/contribution_weighted_voting_cdk_rs_backend/contribution_weighted_voting_cdk_rs_backend.did",
+      "package": "contribution_weighted_voting_cdk_rs_backend",
+      "type": "rust"
+    },
+    "contribution_weighted_voting_cdk_rs_frontend": {
+      "dependencies": [
+        "contribution_weighted_voting_cdk_rs_backend"
+      ],
+      "frontend": {
+        "entrypoint": "src/contribution_weighted_voting_cdk_rs_frontend/src/index.html"
+      },
+      "source": [
+        "src/contribution_weighted_voting_cdk_rs_frontend/assets",
+        "dist/contribution_weighted_voting_cdk_rs_frontend/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}

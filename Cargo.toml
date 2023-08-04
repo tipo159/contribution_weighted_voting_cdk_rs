@@ -1,0 +1,4 @@
+[workspace]
+members = [
+    "src/contribution_weighted_voting_cdk_rs_backend",
+]
