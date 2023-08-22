@@ -1,0 +1,35 @@
+type Poll = record {
+  votingDetails : vec VotingDetail;
+  owner : principal;
+  pollClosingDate : text;
+  name : text;
+  description : text;
+  voters : vec Voter;
+  options : vec text;
+};
+type PollPayload = record {
+  pollClosingDate : text;
+  name : text;
+  description : text;
+  options : vec text;
+};
+type Voter = record { voter : principal; name : text; contribution : float32 };
+type VotingDetail = record {
+  option : int32;
+  name : text;
+  contribution : float32;
+};
+type VoterResult = variant { Ok : Voter; Err : text };
+type PollResult = variant { Ok : Poll; Err : text };
+type VotingResult = variant { Ok : vec text; Err : text };
+type VotingDetailResult = variant { Ok : VotingDetail; Err : text };
+service : () -> {
+  changeVoterContribution : (text, text, float32) -> (VoterResult);
+  createPoll : (PollPayload) -> (PollResult);
+  getAllPolls : () -> (vec Poll) query;
+  getPollByName : (text) -> (PollResult) query;
+  getVotingResult : (text) -> (VotingResult) query;
+  registerVoterToPoll : (text, text) -> (VoterResult);
+  removeExpiredPolls : (int32) -> (vec Poll);
+  voteToPoll : (text, text, text) -> (VotingDetailResult);
+}
